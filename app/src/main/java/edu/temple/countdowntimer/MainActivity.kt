@@ -53,7 +53,7 @@ fun Timer(modifier: Modifier = Modifier) {
     Column(Modifier.fillMaxSize(), Arrangement.Center,
         Alignment.CenterHorizontally) {
         Text(
-            text = "Hello !",
+            text = "Enter Timer Starting Value!",
             modifier = modifier
 
         )
