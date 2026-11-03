@@ -28,6 +28,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import edu.temple.countdowntimer.ui.theme.CountdowntimerTheme
 
+const val TIMER_KEY = "timerkey"
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +74,7 @@ fun Timer(modifier: Modifier = Modifier) {
             {
                 context.startService(
                     Intent(context, MyTimerService::class.java).apply {
-                        putExtra(TIMER_KEY, timerValue)
+                        putExtra(TIMER_KEY, timerValue.toInt())
                     }
                 )
             }

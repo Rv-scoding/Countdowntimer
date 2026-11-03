@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 class MyTimerService : Service() {
 
@@ -20,30 +21,21 @@ class MyTimerService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        startTimer()
+        intent?.run {
+            getIntExtra(TIMER_KEY, 10).let { startValue ->
+                CoroutineScope(Dispatchers.Default).launch {
+                    for(i in startValue downTo 0) {
+                        Log.d("Countdown", "$i")
+                        delay(1.seconds)
+                    }
+                }
+            }
+        }
 
         return super.onStartCommand(intent, flags, startId)
     }
 
-    fun startTimer() {
 
-        val scope = CoroutineScope(Dispatchers.Default)
-
-        scope.launch {
-
-            for (i in 50  downTo  0){
-                Log.d ("Countdown", i.toString())
-                delay(100.milliseconds)
-            }
-
-
-
-        }
-
-
-
-
-    }
 
 
 
