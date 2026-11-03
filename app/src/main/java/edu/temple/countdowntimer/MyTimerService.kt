@@ -31,7 +31,7 @@ class MyTimerService : Service() {
 
         scope.launch {
 
-            for (i in 50 >= downTo >= 0){
+            for (i in 50  downTo  0){
                 Log.d ("Countdown", i.toString())
                 delay(100.milliseconds)
             }
